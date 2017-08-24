@@ -8,12 +8,18 @@
 # To get a config file with the same key positions, but for your current
 # layout, use the i3-config-wizard
 #
+
+
+
 set $mod Mod4
+
 
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font pango:Overpass 10
+
+new_window pixel 3
 
 
 # use these keys for focus, movement, and resize directions when reaching for
@@ -30,6 +36,10 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec xfce4-terminal
+
+
+# open nautilus
+bindsym $mod+Shift+Return exec nautilus
 
 
 # kill focused window
@@ -104,6 +114,9 @@ bindsym $mod+a focus parent
 # blur lock screen
 bindsym $mod+Shift+l exec /home/chris/scripting/pixellock.sh
 
+# spectrum analyzer
+bindsym $mod+Shift+s exec /home/chris/.spectrumyzer/spectrumyzer.py
+
 
 # open terminal and run weather forecast, floating mode
 bindsym $mod+Shift+w exec /home/chris/scripting/weather-term.sh
@@ -121,7 +134,7 @@ for_window [class="Gnome-calendar"] floating enable
 
 # open Gnome clocks, floating mode
 for_window [class="Gnome-clocks"] floating enable, move absolute position center
-for_window [class="Gnome-clocks"] resize shrink left 55, resize shrink right 55, resize shrink down 500, resize shrink up 80
+for_window [class="Gnome-clocks"] resize shrink left 51, resize shrink right 51, resize shrink down 500, resize shrink up 80
 
 
 # Pulse Audio controls
@@ -163,9 +176,9 @@ set $space4 " 4 ⏐ writes "
 set $space5 " 5 ⏐ works "
 set $space6 " 6 ⏐ games "
 set $space7 " 7 ⏐ photos "
-set $space8 " 8 ⏐ musics "
-set $space9 " 9 ⏐ misc. "
-set $space10 " 10 ⏐ etc. "
+set $space8 " 8 ⏐ medias "
+set $space9 " 9 ⏐ miscs. "
+set $space10 " 10 ⏐ etcs. "
 
 
 # switch to workspace
@@ -199,10 +212,13 @@ assign [class="Vivaldi-stable"] $space1
 assign [class="Google-chrome"] $space1
 assign [class="Chromium-browser"] $space1
 assign [class="Firefox"] $space1
+assign [class="Nautilus"] $space3
 assign [class="Spacefm"] $space3
 assign [class="Sublime_text"] $space4
 assign [class="libreoffice-startcenter"] $space4
 assign [class="RStudio"] $space5
+assign [class="Praat"] $space5
+assign [class="Audacity"] $space5
 assign [class="Phoenix"] $space6
 assign [class="wesnoth-1.12"] $space6
 assign [class="Gimp"] $space7
@@ -210,6 +226,9 @@ assign [class="VirtualBox"] $space7
 assign [class="Darktable"] $space7
 assign [class="Rapid-photo-downloader"] $space7
 assign [class="Spotify"] $space8
+assign [class="vlc"] $space8
+assign [class="Deja-dup"] $space9
+assign [class="Deja-dup-preferences"] $space9
 
 
 # navigate prev/next workspaces
@@ -262,7 +281,7 @@ bindsym --release $mod+F12 exec scrot -e 'mv $f /home/chris/Pictures/screenshots
 # Color variables
 set $color1 #38acd6
 set $color2 #52938e
-set $color3 #7fe4dd
+set $color3 #56b7b0
 set $darklight #074860
 set $highlight #3fc0ef
 set $background #203e4a
@@ -288,9 +307,10 @@ bar {
 
 
 #colors:                            border      backgr.     text            indicator
-client.focused                    $color2   $color2     $darklight  $color2
-client.focused_inactive     $color2   $background $darklight         $color2
-client.unfocused                $color2 $background $color2 $color2
+#client.focused                    $color3   $color3     $darklight  $color3
+client.focused                    $color3   $color3     $darklight  $color3
+client.focused_inactive     $background   $background $color2         $background
+client.unfocused                $background $background $background $background
 client.urgent                      #900000 #900000 #ffffff          #2b2b2b
 
 
@@ -306,17 +326,18 @@ client.urgent                      #900000 #900000 #ffffff          #2b2b2b
 #exec i3-config-wizard
 
 
+
 # Load wallpaper
-exec_always feh --bg-scale /home/chris/Pictures/Wallpapers/Ascent.png
+exec_always feh --bg-scale /home/chris/Pictures/Wallpapers/cools.png
 #exec --no-startup-id compton --config ~/.config/compton.conf -b
 
 
 # Enable trackpad tap-to-click
-exec xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Tapping Enabled" 1
+exec --no-startup-id xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Tapping Enabled" 1
 
 
 # Change trackpad pointer speed
-exec xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Accel Speed" 0.9
+exec --no-startup-id xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Accel Speed" 0.9
 
 
 # Start Network Manager
@@ -325,7 +346,3 @@ exec --no-startup-id nm-applet
 
 # Start Dropbox
 exec --no-startup-id dropbox start
-
-
-# Start Spacefm
-#exec --no-startup-id spacefm
