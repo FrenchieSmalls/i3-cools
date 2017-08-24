@@ -1,0 +1,37 @@
+[Main]
+source = 0
+
+
+# valid options: normal, desktop, screensize, workarea, fullscreen, maximize, keep_below, skip_taskbar, skip_pager
+state = normal
+# valid options: bars, curves
+render = bars
+
+[Bars]
+padding = 5
+scale = 1
+rgba = #52938eFF
+# number of bars, also used if render=curves
+count = 64
+
+[Offset]
+left = 5
+right = 5
+top = 5
+bottom = 5
+
+[Smoothing]
+# Valid modes: none, normal, scientific, waves
+mode = normal
+
+# default fall acceleration is 1% of maximum bar height per frame. more - faster bars fall speed
+gravity = 1
+
+# number of frames to delay fast bars raising. more - slower
+slowpeak = 2
+
+# agressiveness of waves mode. less - more agressive smoothing (1 is most agressive)
+waves = 2
+
+# agressiveness of scientific mode. less - more agressive smoothing (1 is most agressive)
+scientific = 3
