@@ -302,7 +302,7 @@ bar {
        	focused_workspace  $color1 $background $highlight
         	active_workspace   #555555 #555555 #ffffff
         	inactive_workspace $color2 #000000 $color2
-        	urgent_workspace   $color1  $background2  $background
+        	urgent_workspace   $color1  $background2  $color1
 
              statusline $color2
              separator $color2
@@ -315,7 +315,7 @@ bar {
 client.focused                    $color3   $color3     $darklight  $color3
 client.focused_inactive     $background   $background $color2         $background
 client.unfocused                $background $background $background $background
-client.urgent                      #bad34c #bad34c #ffffff          #bad34c
+client.urgent                      $color1  $background2 #ffffff          $color1 
 
 
 #######################################################################
