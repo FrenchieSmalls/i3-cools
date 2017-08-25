@@ -46,6 +46,10 @@ bindsym $mod+Shift+Return exec nautilus
 bindsym $mod+Shift+q kill
 
 
+# toggle between previous/current workspaces
+bindsym Mod1+Tab workspace back_and_forth
+
+
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
 bindsym $mod+d exec rofi -show run
@@ -285,7 +289,7 @@ set $color3 #56b7b0
 set $darklight #074860
 set $highlight #3fc0ef
 set $background #203e4a
-
+set $background2 #5a8683
 
 # Start i3bar to display a workspace bar (plus the system information i3status finds out, if available)
 bar {
@@ -298,7 +302,7 @@ bar {
        	focused_workspace  $color1 $background $highlight
         	active_workspace   #555555 #555555 #ffffff
         	inactive_workspace $color2 #000000 $color2
-        	urgent_workspace   #2f343a #900000 #ffffff
+        	urgent_workspace   $color1  $background2  $background
 
              statusline $color2
              separator $color2
@@ -307,11 +311,11 @@ bar {
 
 
 #colors:                            border      backgr.     text            indicator
-#client.focused                    $color3   $color3     $darklight  $color3
+#client.focused                  $color3   $color3     $darklight  $color3
 client.focused                    $color3   $color3     $darklight  $color3
 client.focused_inactive     $background   $background $color2         $background
 client.unfocused                $background $background $background $background
-client.urgent                      #900000 #900000 #ffffff          #2b2b2b
+client.urgent                      #bad34c #bad34c #ffffff          #bad34c
 
 
 #######################################################################
@@ -337,7 +341,7 @@ exec --no-startup-id xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Tappin
 
 
 # Change trackpad pointer speed
-exec --no-startup-id xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Accel Speed" 0.9
+exec --no-startup-id xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Accel Speed" 1
 
 
 # Start Network Manager
