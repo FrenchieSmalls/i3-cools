@@ -302,7 +302,7 @@ bar {
        	focused_workspace  $color1 $background $highlight
         	active_workspace   #555555 #555555 #ffffff
         	inactive_workspace $color2 #000000 $color2
-        	urgent_workspace   $color1  $background2  $color1
+        	urgent_workspace   $color1  $background2  $background
 
              statusline $color2
              separator $color2
