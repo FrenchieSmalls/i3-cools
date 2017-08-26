@@ -139,6 +139,10 @@ for_window [window_role="pop-up"] floating enable
 for_window [class="Gnome-calendar"] floating enable
 
 
+# enable keybind for Gnome calendar
+bindsym $mod+Shift+Menu exec --no-startup-id gnome-calendar
+
+
 # open Gnome clocks, floating mode
 for_window [class="Gnome-clocks"] floating enable, move absolute position center
 for_window [class="Gnome-clocks"] resize shrink left 51, resize shrink right 51, resize shrink down 500, resize shrink up 80
@@ -157,6 +161,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 20 # decrease
 
 # Touchpad controls
 bindsym XF86TouchpadToggle exec --no-startup-id /home/chris/scripting/toggletouchpad.sh # toggle touchpad
+
 
 
 # Media player controls
@@ -353,7 +358,7 @@ bar {
 client.focused                    $background        $background      $background      $background
 client.focused_inactive     $background3      $background3    $background3    $background3
 client.unfocused                $background3      $background3    $background3    $background3
-client.urgent                      $highlight             $highlight           $highlight           $highlight 
+client.urgent                      $background3      $background3    $background3     $background3
 
 
 #######################################################################
