@@ -19,7 +19,10 @@ set $mod Mod4
 # is used in the bar {} block below.
 font pango:Overpass 10
 
-new_window pixel 3
+for_window [class=".*"] border pixel 2
+
+gaps inner 5
+gaps outer 0
 
 
 # use these keys for focus, movement, and resize directions when reaching for
@@ -35,7 +38,7 @@ floating_modifier $mod
 
 
 # start a terminal
-bindsym $mod+Return exec xfce4-terminal
+bindsym $mod+Return exec --no-startup-id xfce4-terminal
 
 
 # open nautilus
@@ -51,8 +54,8 @@ bindsym Mod1+Tab workspace back_and_forth
 
 
 # start dmenu (a program launcher)
-#bindsym $mod+d exec dmenu_run
-bindsym $mod+d exec rofi -show run
+#bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec --no-startup-id rofi -show run
 
 
 # change focus
@@ -116,14 +119,14 @@ bindsym $mod+a focus parent
 
 
 # blur lock screen
-bindsym $mod+Shift+l exec /home/chris/scripting/pixellock.sh
+bindsym $mod+Shift+l exec --no-startup-id /home/chris/scripting/pixellock.sh
 
 # spectrum analyzer
-bindsym $mod+Shift+s exec /home/chris/.spectrumyzer/spectrumyzer.py
+bindsym $mod+Shift+s exec --no-startup-id /home/chris/.spectrumyzer/spectrumyzer.py
 
 
 # open terminal and run weather forecast, floating mode
-bindsym $mod+Shift+w exec /home/chris/scripting/weather-term.sh
+bindsym $mod+Shift+w exec --no-startup-id /home/chris/scripting/weather-term.sh
 for_window [instance="xfce4-terminal" title="Weather"] floating enable, move absolute position center
 for_window [instance="xfce4-terminal" title="Weather"] resize grow left 180, resize grow right 180, resize grow down 140, resize grow up 140
 
@@ -148,19 +151,19 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 20 # decrease screen brightness
 
 
 # Touchpad controls
-bindsym XF86TouchpadToggle exec /home/chris/scripting/toggletouchpad.sh # toggle touchpad
+bindsym XF86TouchpadToggle exec --no-startup-id /home/chris/scripting/toggletouchpad.sh # toggle touchpad
 
 
 # Media player controls
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPlay exec --no-startup-id playerctl play
+bindsym XF86AudioPause exec --no-startup-id playerctl pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
 
 # move the currently focused window to the scratchpad
@@ -170,6 +173,17 @@ bindsym $mod+Shift+minus move scratchpad
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym $mod+minus scratchpad show
+
+
+
+
+# modify gaps
+bindsym Mod1+Control+Left exec i3-msg gaps inner current minus 3
+bindsym Mod1+Control+Right exec i3-msg gaps inner current plus 3
+
+bindsym Mod1+Control+Down exec i3-msg gaps outer current minus 3
+bindsym Mod1+Control+Up exec i3-msg gaps outer current plus 3
+
 
 
 # Name the workspaces
@@ -183,6 +197,29 @@ set $space7 " 7 ⏐ photos "
 set $space8 " 8 ⏐ medias "
 set $space9 " 9 ⏐ miscs. "
 set $space10 " 10 ⏐ etcs. "
+
+
+# set gaps by workspace
+workspace $space1 gaps outer 0
+workspace $space1 gaps inner 0
+workspace $space2 gaps outer 0
+workspace $space2 gaps inner 10
+workspace $space3 gaps outer 0
+workspace $space3 gaps inner 5
+workspace $space4 gaps outer 0
+workspace $space4 gaps inner 5
+workspace $space5 gaps outer 0
+workspace $space5 gaps inner 0
+workspace $space6 gaps outer 0
+workspace $space6 gaps inner 0
+workspace $space7 gaps outer 0
+workspace $space7 gaps inner 0
+workspace $space8 gaps outer 0
+workspace $space8 gaps inner 10
+workspace $space9 gaps outer 0
+workspace $space9 gaps inner 5
+workspace $space10 gaps outer 0
+workspace $space10 gaps inner 5
 
 
 # switch to workspace
@@ -249,7 +286,7 @@ bindsym $mod+Shift+r restart
 
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t error -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t error -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 
 # resize window (you can also use the mouse for that)
@@ -279,7 +316,7 @@ bindsym $mod+r mode "resize"
 
 
 # screen capture using scrot
-bindsym --release $mod+F12 exec scrot -e 'mv $f /home/chris/Pictures/screenshots/'
+bindsym --release $mod+F12 exec --no-startup-id scrot -e 'mv $f /home/chris/Pictures/screenshots/'
 
 
 # Color variables
@@ -290,6 +327,7 @@ set $darklight #074860
 set $highlight #3fc0ef
 set $background #203e4a
 set $background2 #5a8683
+set $background3 #23858f
 
 # Start i3bar to display a workspace bar (plus the system information i3status finds out, if available)
 bar {
@@ -311,11 +349,11 @@ bar {
 
 
 #colors:                            border      backgr.     text            indicator
-#client.focused                  $color3   $color3     $darklight  $color3
-client.focused                    $color3   $color3     $darklight  $color3
-client.focused_inactive     $background   $background $color2         $background
-client.unfocused                $background $background $background $background
-client.urgent                      $color1  $background2 #ffffff          $color1 
+#client.focused                   #ffffff    $background     #ffffff   $background
+client.focused                    $background        $background      $background      $background
+client.focused_inactive     $background3      $background3    $background3    $background3
+client.unfocused                $background3      $background3    $background3    $background3
+client.urgent                      $color1                 $color1               $color1               $color1 
 
 
 #######################################################################
@@ -332,7 +370,7 @@ client.urgent                      $color1  $background2 #ffffff          $color
 
 
 # Load wallpaper
-exec_always feh --bg-scale /home/chris/Pictures/Wallpapers/cools.png
+exec_always --no-startup-id feh --bg-scale /home/chris/Pictures/Wallpapers/cools.png
 #exec --no-startup-id compton --config ~/.config/compton.conf -b
 
 
