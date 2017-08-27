@@ -183,11 +183,11 @@ bindsym $mod+minus scratchpad show
 
 
 # modify gaps
-bindsym Mod1+Control+Left exec i3-msg gaps inner current minus 3
-bindsym Mod1+Control+Right exec i3-msg gaps inner current plus 3
+bindsym $mod+Control+Left exec --no-startup-id i3-msg gaps inner current minus 5
+bindsym $mod+Control+Right exec --no-startup-id i3-msg gaps inner current plus 5
 
-bindsym Mod1+Control+Down exec i3-msg gaps outer current minus 3
-bindsym Mod1+Control+Up exec i3-msg gaps outer current plus 3
+bindsym $mod+Control+Down exec --no-startup-id i3-msg gaps outer current minus 5
+bindsym $mod+Control+Up exec --no-startup-id i3-msg gaps outer current plus 5
 
 
 
@@ -393,3 +393,7 @@ exec --no-startup-id nm-applet
 
 # Start Dropbox
 exec --no-startup-id dropbox start
+
+
+# Start  DejaDup monitor
+exec --no-startup-id /usr/lib/x86_64-linux-gnu/deja-dup/deja-dup-monitor
