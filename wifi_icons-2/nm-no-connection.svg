@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="24"
+   height="24"
+   viewBox="0 0 24 24"
+   fill="none"
+   stroke="currentColor"
+   stroke-width="2"
+   stroke-linecap="round"
+   stroke-linejoin="round"
+   class="feather feather-wifi-off"
+   id="svg4387"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="nm-no-connection.svg">
+  <metadata
+     id="metadata4407">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs4405" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1354"
+     inkscape:window-height="732"
+     id="namedview4403"
+     showgrid="false"
+     inkscape:zoom="9.8333333"
+     inkscape:cx="12.101695"
+     inkscape:cy="24.20339"
+     inkscape:window-x="4"
+     inkscape:window-y="4"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg4387" />
+  <line
+     x1="1"
+     y1="1"
+     x2="23"
+     y2="23"
+     id="line4389"
+     style="stroke:#9ec0bd;stroke-opacity:1" />
+  <path
+     d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"
+     id="path4391"
+     style="stroke:#9ec0bd;stroke-opacity:1" />
+  <path
+     d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"
+     id="path4393"
+     style="stroke:#9ec0bd;stroke-opacity:1" />
+  <path
+     d="M10.71 5.05A16 16 0 0 1 22.58 9"
+     id="path4395"
+     style="stroke:#9ec0bd;stroke-opacity:1" />
+  <path
+     d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"
+     id="path4397"
+     style="stroke:#9ec0bd;stroke-opacity:1" />
+  <path
+     d="M8.53 16.11a6 6 0 0 1 6.95 0"
+     id="path4399"
+     style="stroke:#9ec0bd;stroke-opacity:1" />
+  <line
+     x1="12"
+     y1="20"
+     x2="12"
+     y2="20"
+     id="line4401"
+     style="stroke:#9ec0bd;stroke-opacity:1" />
+</svg>
