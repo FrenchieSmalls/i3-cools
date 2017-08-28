@@ -53,9 +53,11 @@ bindsym $mod+Shift+q kill
 bindsym Mod1+Tab workspace back_and_forth
 
 
-# start dmenu (a program launcher)
-#bindsym $mod+d exec --no-startup-id dmenu_run
+# Rofi controls
 bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+Tab exec --no-startup-id rofi -show window
+
+focus_follows_mouse no
 
 
 # change focus
@@ -125,6 +127,10 @@ bindsym $mod+Shift+l exec --no-startup-id /home/chris/scripting/pixellock.sh
 bindsym $mod+Shift+s exec --no-startup-id /home/chris/.spectrumyzer/spectrumyzer.py
 
 
+# pavucontrol audio center
+bindsym $mod+Shift+a exec --no-startup-id pavucontrol
+
+
 # open terminal and run weather forecast, floating mode
 bindsym $mod+Shift+w exec --no-startup-id /home/chris/scripting/weather-term.sh
 for_window [instance="xfce4-terminal" title="Weather"] floating enable, move absolute position center
@@ -135,10 +141,6 @@ for_window [instance="xfce4-terminal" title="Weather"] resize grow left 180, res
 for_window [window_role="pop-up"] floating enable
 
 
-# open Gnome calendar, floating mode
-for_window [class="Gnome-calendar"] floating enable
-
-
 # enable keybind for Gnome calendar
 bindsym $mod+Shift+Menu exec --no-startup-id gnome-calendar
 
@@ -146,6 +148,18 @@ bindsym $mod+Shift+Menu exec --no-startup-id gnome-calendar
 # open Gnome clocks, floating mode
 for_window [class="Gnome-clocks"] floating enable, move absolute position center
 for_window [class="Gnome-clocks"] resize shrink left 51, resize shrink right 51, resize shrink down 500, resize shrink up 80
+
+
+# Open specific applications in floating mode
+for_window [class="Gnome-calendar"] floating enable
+for_window [title="File Transfer*"] floating enable
+for_window [class="GParted"] floating enable border normal
+for_window [class="Lxappearance"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [class="Transmission-gtk"] floating enable
+for_window [class="Vlc"] floating enable border pixel 2
+
+
 
 
 # Pulse Audio controls
@@ -208,11 +222,11 @@ set $space10 " 10 ⏐ etcs. "
 workspace $space1 gaps outer 0
 workspace $space1 gaps inner 0
 workspace $space2 gaps outer 0
-workspace $space2 gaps inner 10
+workspace $space2 gaps inner 15
 workspace $space3 gaps outer 0
-workspace $space3 gaps inner 5
+workspace $space3 gaps inner 10
 workspace $space4 gaps outer 0
-workspace $space4 gaps inner 5
+workspace $space4 gaps inner 10
 workspace $space5 gaps outer 0
 workspace $space5 gaps inner 0
 workspace $space6 gaps outer 0
@@ -220,11 +234,11 @@ workspace $space6 gaps inner 0
 workspace $space7 gaps outer 0
 workspace $space7 gaps inner 0
 workspace $space8 gaps outer 0
-workspace $space8 gaps inner 10
+workspace $space8 gaps inner 15
 workspace $space9 gaps outer 0
-workspace $space9 gaps inner 5
+workspace $space9 gaps inner 10
 workspace $space10 gaps outer 0
-workspace $space10 gaps inner 5
+workspace $space10 gaps inner 10
 
 
 # switch to workspace
@@ -332,7 +346,7 @@ set $darklight #074860
 set $highlight #3fc0ef
 set $background #203e4a
 set $background2 #5a8683
-set $background3 #23858e
+set $background3 #2a8691
 
 # Start i3bar to display a workspace bar (plus the system information i3status finds out, if available)
 bar {
