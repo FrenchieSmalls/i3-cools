@@ -56,7 +56,6 @@ bindsym Mod1+Tab workspace back_and_forth
 # Rofi controls
 bindsym $mod+d exec --no-startup-id rofi -show run
 bindsym $mod+Tab exec --no-startup-id rofi -show window
-
 focus_follows_mouse no
 
 
@@ -133,8 +132,13 @@ bindsym $mod+Shift+a exec --no-startup-id pavucontrol
 
 # open terminal and run weather forecast, floating mode
 bindsym $mod+Shift+w exec --no-startup-id /home/chris/scripting/weather-term.sh
-for_window [instance="xfce4-terminal" title="Weather"] floating enable, move absolute position center
-for_window [instance="xfce4-terminal" title="Weather"] resize grow left 180, resize grow right 180, resize grow down 140, resize grow up 140
+for_window [instance="xfce4-terminal" title="Weather"] floating enable, move absolute position center, resize grow left 180, resize grow right 180, resize grow down 140, resize grow up 140
+
+
+# open terminal and display i3 cheatsheet, floating mode
+bindsym F10 exec --no-startup-id /home/chris/scripting/i3cheatsheet.sh
+for_window [instance="xfce4-terminal" title="i3 Shortcuts"] floating enable, move absolute position center, resize grow left 318, resize grow right 318, resize grow down 115, resize grow up 115
+
 
 
 # float browser pop-ups
@@ -222,7 +226,7 @@ set $space10 " 10 ⏐ etcs. "
 workspace $space1 gaps outer 0
 workspace $space1 gaps inner 0
 workspace $space2 gaps outer 0
-workspace $space2 gaps inner 15
+workspace $space2 gaps inner 20
 workspace $space3 gaps outer 0
 workspace $space3 gaps inner 10
 workspace $space4 gaps outer 0
@@ -296,6 +300,11 @@ bindsym Control+Left workspace prev
 bindsym Control+Right workspace next
 
 
+# move the previous workspace and follow it
+bindsym $mod+Shift+z move container to workspace back_and_forth; workspace back_and_forth
+
+
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 
@@ -335,18 +344,22 @@ bindsym $mod+r mode "resize"
 
 
 # screen capture using scrot
-bindsym --release $mod+F12 exec --no-startup-id scrot -e 'mv $f /home/chris/Pictures/screenshots/'
+bindsym --release $mod+Print exec --no-startup-id scrot -e 'mv $f /home/chris/Pictures/screenshots/'
 
 
 # Color variables
 set $color1 #38acd6
 set $color2 #52938e
+#set $color2 #a031a5
 set $color3 #56b7b0
 set $darklight #074860
 set $highlight #3fc0ef
 set $background #203e4a
 set $background2 #5a8683
-set $background3 #2a8691
+#set $background3 #2a8691
+set $background3 #2e8889
+
+
 
 # Start i3bar to display a workspace bar (plus the system information i3status finds out, if available)
 bar {
@@ -355,11 +368,11 @@ bar {
         #tray_output primary
 
 	colors {
-        	#color class       border  back.   text
-       	focused_workspace  $color1 $background $highlight
-        	active_workspace   #555555 #555555 #ffffff
-        	inactive_workspace $color2 #000000 $color2
-        	urgent_workspace   $color1  $background2  $background
+        	#color class           border      back.           text
+       	    focused_workspace      $color1     $background     $highlight
+        	active_workspace       #555555     #555555         #ffffff
+        	inactive_workspace     $color2     #000000         $color2
+        	urgent_workspace       $color1     $background2    $background
 
              statusline $color2
              separator $color2
@@ -367,12 +380,12 @@ bar {
 }
 
 
-#colors:                            border      backgr.     text            indicator
-#client.focused                   #ffffff    $background     #ffffff   $background
-client.focused                    $background        $background      $background      $background
-client.focused_inactive     $background3      $background3    $background3    $background3
-client.unfocused                $background3      $background3    $background3    $background3
-client.urgent                      $background3      $background3    $background3     $background3
+#colors:                  border        backgr.         text            indicator
+#client.focused           #ffffff       $background     #ffffff         $background
+client.focused            $background   $background     $background     $background
+client.focused_inactive   $background3  $background3    $background3    $background3
+client.unfocused          $background3  $background3    $background3    $background3
+client.urgent             $background3  $background3    $background3    $background3
 
 
 #######################################################################
