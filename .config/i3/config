@@ -21,6 +21,8 @@ font pango:Overpass 10
 
 for_window [class=".*"] border pixel 2
 
+smart_borders on
+
 gaps inner 5
 gaps outer 0
 
@@ -37,12 +39,14 @@ gaps outer 0
 floating_modifier $mod
 
 
-# start a terminal
+# start a terminal, tiled or floating
 bindsym $mod+Return exec --no-startup-id xfce4-terminal
+bindsym $mod+Shift+Return exec --no-startup-id xfce4-terminal --title FloatTerm
+for_window [title="FloatTerm"] floating enable, move absolute position center, resize grow left 150, resize grow right 150, resize grow down 100, resize grow up 100
 
 
 # open nautilus
-bindsym $mod+Shift+Return exec nautilus
+bindsym $mod+Shift+f exec --no-startup-id nautilus
 
 
 # kill focused window
@@ -136,7 +140,7 @@ for_window [instance="xfce4-terminal" title="Weather"] floating enable, move abs
 
 
 # open terminal and display i3 cheatsheet, floating mode
-bindsym F10 exec --no-startup-id /home/chris/scripting/i3cheatsheet.sh
+bindsym $mod+F10 exec --no-startup-id /home/chris/scripting/i3cheatsheet.sh
 for_window [instance="xfce4-terminal" title="i3 Shortcuts"] floating enable, move absolute position center, resize grow left 318, resize grow right 318, resize grow down 115, resize grow up 115
 
 
@@ -288,6 +292,7 @@ assign [class="wesnoth-1.12"] $space6
 assign [class="Gimp"] $space7
 assign [class="VirtualBox"] $space7
 assign [class="Darktable"] $space7
+assign [class="Inkscape"] $space7
 assign [class="Rapid-photo-downloader"] $space7
 assign [class="Spotify"] $space8
 assign [class="vlc"] $space8
@@ -358,6 +363,8 @@ set $background #203e4a
 set $background2 #5a8683
 #set $background3 #2a8691
 set $background3 #2e8889
+set $termfocused #9c39a3
+set $termunfocused #203e4a
 
 
 
@@ -380,12 +387,16 @@ bar {
 }
 
 
-#colors:                  border        backgr.         text            indicator
-#client.focused           #ffffff       $background     #ffffff         $background
-client.focused            $background   $background     $background     $background
-client.focused_inactive   $background3  $background3    $background3    $background3
-client.unfocused          $background3  $background3    $background3    $background3
-client.urgent             $background3  $background3    $background3    $background3
+#colors:                  border            backgr.         text            indicator
+client.focused            $background      $background     $background     $background
+client.focused_inactive   $background3     $background3    $background3    $background3
+client.unfocused          $background3     $background3    $background3    $background3
+client.urgent             $background3     $background3    $background3    $background3
+
+#client.focused            $termfocused     $termfocused    $termfocused    $termfocused
+#client.focused_inactive   $termunfocused   $termunfocused  $termunfocused  $termunfocused
+#client.unfocused          $termunfocused   $termunfocused  $termunfocused  $termunfocused
+#client.urgent             $termunfocused   $termunfocused  $termunfocused  $termunfocused
 
 
 #######################################################################
