@@ -17,50 +17,64 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Overpass 10
+font pango:Overpass, Awesome 10
 
 for_window [class=".*"] border pixel 2
 
 smart_borders on
+smart_gaps on
 
 gaps inner 5
 gaps outer 0
 
-
-# use these keys for focus, movement, and resize directions when reaching for
-# the arrows is not convenient
-#set $up l
-#set $down k
-#set $left j
-#set $right semicolon
 
 
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 
-# start a terminal, tiled or floating
-bindsym $mod+Return exec --no-startup-id xfce4-terminal
-bindsym $mod+Shift+Return exec --no-startup-id xfce4-terminal --title FloatTerm
-for_window [title="FloatTerm"] floating enable, move absolute position center, resize grow left 150, resize grow right 150, resize grow down 100, resize grow up 100
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
 
 
-# open nautilus
-bindsym $mod+Shift+f exec --no-startup-id nautilus
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t error -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
 
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 
-# toggle between previous/current workspaces
-bindsym Mod1+Tab workspace back_and_forth
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
 
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing down will shrink the window’s height.
+        # Pressing up will grow the window’s height.
+        bindsym $left       resize shrink width 10 px or 10 ppt
+        bindsym $down       resize shrink height 10 px or 10 ppt
+        bindsym $up         resize grow height 10 px or 10 ppt
+        bindsym $right      resize grow width 10 px or 10 ppt
 
-# Rofi controls
-bindsym $mod+d exec --no-startup-id rofi -show run
-bindsym $mod+Tab exec --no-startup-id rofi -show window
-focus_follows_mouse no
+        # same bindings, but for the arrow keys
+        bindsym Left        resize shrink width 10 px or 10 ppt
+        bindsym Down        resize shrink height 10 px or 10 ppt
+        bindsym Up          resize grow height 10 px or 10 ppt
+        bindsym Right       resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
 
 
 # change focus
@@ -123,6 +137,23 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 
+# Rofi controls
+bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+Tab exec --no-startup-id rofi -show window
+focus_follows_mouse no
+
+
+# start a terminal, tiled or floating
+bindsym $mod+Return exec --no-startup-id xfce4-terminal
+bindsym $mod+Shift+Return exec --no-startup-id xfce4-terminal --title FloatTerm
+for_window [title="FloatTerm"] floating enable, move absolute position center, resize grow left 150, resize grow right 150, resize grow down 100, resize grow up 100
+
+
+# open nautilus
+bindsym $mod+Shift+f exec --no-startup-id nautilus
+
+
+
 # blur lock screen
 bindsym $mod+Shift+l exec --no-startup-id /home/chris/scripting/pixellock.sh
 
@@ -141,7 +172,7 @@ for_window [instance="xfce4-terminal" title="Weather"] floating enable, move abs
 
 # open terminal and display i3 cheatsheet, floating mode
 bindsym $mod+F10 exec --no-startup-id /home/chris/scripting/i3cheatsheet.sh
-for_window [instance="xfce4-terminal" title="i3 Shortcuts"] floating enable, move absolute position center, resize grow left 318, resize grow right 318, resize grow down 115, resize grow up 115
+for_window [instance="xfce4-terminal" title="i3 Shortcuts"] floating enable, move absolute position center, resize grow left 318, resize grow right 318, resize grow down 136, resize grow up 136
 
 
 
@@ -149,8 +180,12 @@ for_window [instance="xfce4-terminal" title="i3 Shortcuts"] floating enable, mov
 for_window [window_role="pop-up"] floating enable
 
 
+# Enable system menu
+bindsym $mod+Shift+Menu exec --no-startup-id perl /home/chris/.menutray/menutray -i
+
+
 # enable keybind for Gnome calendar
-bindsym $mod+Shift+Menu exec --no-startup-id gnome-calendar
+bindsym $mod+Menu exec --no-startup-id gnome-calendar
 
 
 # open Gnome clocks, floating mode
@@ -166,7 +201,6 @@ for_window [class="Lxappearance"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Transmission-gtk"] floating enable
 for_window [class="Vlc"] floating enable border pixel 2
-
 
 
 
@@ -228,7 +262,7 @@ set $space10 " 10 ⏐ etcs. "
 
 # set gaps by workspace
 workspace $space1 gaps outer 0
-workspace $space1 gaps inner 0
+workspace $space1 gaps inner 10
 workspace $space2 gaps outer 0
 workspace $space2 gaps inner 20
 workspace $space3 gaps outer 0
@@ -262,17 +296,17 @@ bindsym $mod+9 workspace $space9
 bindsym $mod+0 workspace $space10
 
 
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $space1
-bindsym $mod+Shift+2 move container to workspace $space2
-bindsym $mod+Shift+3 move container to workspace $space3
-bindsym $mod+Shift+4 move container to workspace $space4
-bindsym $mod+Shift+5 move container to workspace $space5
-bindsym $mod+Shift+6 move container to workspace $space6
-bindsym $mod+Shift+7 move container to workspace $space7
-bindsym $mod+Shift+8 move container to workspace $space8
-bindsym $mod+Shift+9 move container to workspace $space9
-bindsym $mod+Shift+0 move container to workspace $space10
+# move focused container to workspace, and follow it
+bindsym $mod+Shift+1 move container to workspace $space1; workspace back_and_forth
+bindsym $mod+Shift+2 move container to workspace $space2; workspace back_and_forth
+bindsym $mod+Shift+3 move container to workspace $space3; workspace back_and_forth
+bindsym $mod+Shift+4 move container to workspace $space4; workspace back_and_forth
+bindsym $mod+Shift+5 move container to workspace $space5; workspace back_and_forth
+bindsym $mod+Shift+6 move container to workspace $space6; workspace back_and_forth
+bindsym $mod+Shift+7 move container to workspace $space7; workspace back_and_forth
+bindsym $mod+Shift+8 move container to workspace $space8; workspace back_and_forth
+bindsym $mod+Shift+9 move container to workspace $space9; workspace back_and_forth
+bindsym $mod+Shift+0 move container to workspace $space10; workspace back_and_forth
 
 
 # assign programs to specific workspaces
@@ -305,47 +339,13 @@ bindsym Control+Left workspace prev
 bindsym Control+Right workspace next
 
 
+# toggle between previous/current workspaces
+bindsym Mod1+Tab workspace back_and_forth
+
+
+
 # move the previous workspace and follow it
 bindsym $mod+Shift+z move container to workspace back_and_forth; workspace back_and_forth
-
-
-
-# reload the configuration file
-bindsym $mod+Shift+c reload
-
-
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-
-
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t error -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-
-
-# resize window (you can also use the mouse for that)
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing down will shrink the window’s height.
-        # Pressing up will grow the window’s height.
-        bindsym $left       resize shrink width 10 px or 10 ppt
-        bindsym $down       resize shrink height 10 px or 10 ppt
-        bindsym $up         resize grow height 10 px or 10 ppt
-        bindsym $right      resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left        resize shrink width 10 px or 10 ppt
-        bindsym Down        resize shrink height 10 px or 10 ppt
-        bindsym Up          resize grow height 10 px or 10 ppt
-        bindsym Right       resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-bindsym $mod+r mode "resize"
 
 
 # screen capture using scrot
