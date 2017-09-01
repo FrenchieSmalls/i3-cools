@@ -318,9 +318,11 @@ assign [class="Nautilus"] $space3
 assign [class="Spacefm"] $space3
 assign [class="Sublime_text"] $space4
 assign [class="libreoffice-startcenter"] $space4
+assign [class="libreoffice-writer"] $space4
 assign [class="RStudio"] $space5
 assign [class="Praat"] $space5
 assign [class="Audacity"] $space5
+assign [class="libreoffice-calc"] $space5
 assign [class="Phoenix"] $space6
 assign [class="wesnoth-1.12"] $space6
 assign [class="Gimp"] $space7
@@ -353,19 +355,16 @@ bindsym --release $mod+Print exec --no-startup-id scrot -e 'mv $f /home/chris/Pi
 
 
 # Color variables
-set $color1 #38acd6
+set $color1 #9c39a3
 set $color2 #52938e
-#set $color2 #a031a5
 set $color3 #56b7b0
 set $darklight #074860
-set $highlight #3fc0ef
-set $background #203e4a
+set $highlight #fb50fb
+set $background #0c442c
 set $background2 #5a8683
-#set $background3 #2a8691
 set $background3 #2e8889
-set $termfocused #9c39a3
-set $termunfocused #203e4a
-
+set $termfocused #fb50fb
+set $termunfocused #657f94
 
 
 # Start i3bar to display a workspace bar (plus the system information i3status finds out, if available)
@@ -388,15 +387,15 @@ bar {
 
 
 #colors:                  border            backgr.         text            indicator
-client.focused            $background      $background     $background     $background
-client.focused_inactive   $background3     $background3    $background3    $background3
-client.unfocused          $background3     $background3    $background3    $background3
-client.urgent             $background3     $background3    $background3    $background3
+#client.focused            $background      $background     $background     $background
+#client.focused_inactive   $background3     $background3    $background3    $background3
+#client.unfocused          $background3     $background3    $background3    $background3
+#client.urgent             $background3     $background3    $background3    $background3
 
-#client.focused            $termfocused     $termfocused    $termfocused    $termfocused
-#client.focused_inactive   $termunfocused   $termunfocused  $termunfocused  $termunfocused
-#client.unfocused          $termunfocused   $termunfocused  $termunfocused  $termunfocused
-#client.urgent             $termunfocused   $termunfocused  $termunfocused  $termunfocused
+client.focused            $termfocused     $termfocused    $termfocused    $termfocused
+client.focused_inactive   $termunfocused   $termunfocused  $termunfocused  $termunfocused
+client.unfocused          $termunfocused   $termunfocused  $termunfocused  $termunfocused
+client.urgent             $termunfocused   $termunfocused  $termunfocused  $termunfocused
 
 
 #######################################################################
@@ -413,7 +412,7 @@ client.urgent             $background3     $background3    $background3    $back
 
 
 # Load wallpaper
-exec_always --no-startup-id feh --bg-scale /home/chris/Pictures/Wallpapers/cools.png
+exec_always --no-startup-id feh --bg-scale /home/chris/Pictures/Wallpapers/grurple.png
 #exec --no-startup-id compton --config ~/.config/compton.conf -b
 
 
@@ -429,9 +428,9 @@ exec --no-startup-id xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Accel 
 exec --no-startup-id nm-applet
 
 
-# Start Dropbox
-exec --no-startup-id dropbox start
-
-
 # Start  DejaDup monitor
 exec --no-startup-id /usr/lib/x86_64-linux-gnu/deja-dup/deja-dup-monitor
+
+
+# Start Dropbox
+exec --no-startup-id dropbox start
