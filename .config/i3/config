@@ -138,8 +138,7 @@ bindsym $mod+a focus parent
 
 
 # Rofi controls
-bindsym $mod+d exec --no-startup-id rofi -show run
-bindsym $mod+Tab exec --no-startup-id rofi -show window
+bindsym $mod+Tab exec --no-startup-id rofi -show run 
 focus_follows_mouse no
 
 
@@ -296,17 +295,17 @@ bindsym $mod+9 workspace $space9
 bindsym $mod+0 workspace $space10
 
 
-# move focused container to workspace, and follow it
-bindsym $mod+Shift+1 move container to workspace $space1; workspace back_and_forth
-bindsym $mod+Shift+2 move container to workspace $space2; workspace back_and_forth
-bindsym $mod+Shift+3 move container to workspace $space3; workspace back_and_forth
-bindsym $mod+Shift+4 move container to workspace $space4; workspace back_and_forth
-bindsym $mod+Shift+5 move container to workspace $space5; workspace back_and_forth
-bindsym $mod+Shift+6 move container to workspace $space6; workspace back_and_forth
-bindsym $mod+Shift+7 move container to workspace $space7; workspace back_and_forth
-bindsym $mod+Shift+8 move container to workspace $space8; workspace back_and_forth
-bindsym $mod+Shift+9 move container to workspace $space9; workspace back_and_forth
-bindsym $mod+Shift+0 move container to workspace $space10; workspace back_and_forth
+# move focused container to workspace and follow it
+bindsym $mod+Shift+1 move container to workspace $space1; workspace $space1
+bindsym $mod+Shift+2 move container to workspace $space2; workspace $space2
+bindsym $mod+Shift+3 move container to workspace $space3; workspace $space3
+bindsym $mod+Shift+4 move container to workspace $space4; workspace $space4
+bindsym $mod+Shift+5 move container to workspace $space5; workspace $space5
+bindsym $mod+Shift+6 move container to workspace $space6; workspace $space6
+bindsym $mod+Shift+7 move container to workspace $space7; workspace $space7
+bindsym $mod+Shift+8 move container to workspace $space8; workspace $space8
+bindsym $mod+Shift+9 move container to workspace $space9; workspace $space9
+bindsym $mod+Shift+0 move container to workspace $space10; workspace $space10
 
 
 # assign programs to specific workspaces
@@ -318,11 +317,9 @@ assign [class="Nautilus"] $space3
 assign [class="Spacefm"] $space3
 assign [class="Sublime_text"] $space4
 assign [class="libreoffice-startcenter"] $space4
-assign [class="libreoffice-writer"] $space4
 assign [class="RStudio"] $space5
 assign [class="Praat"] $space5
 assign [class="Audacity"] $space5
-assign [class="libreoffice-calc"] $space5
 assign [class="Phoenix"] $space6
 assign [class="wesnoth-1.12"] $space6
 assign [class="Gimp"] $space7
@@ -346,7 +343,7 @@ bindsym Mod1+Tab workspace back_and_forth
 
 
 
-# move the previous workspace and follow it
+# move container to the previous workspace and follow it
 bindsym $mod+Shift+z move container to workspace back_and_forth; workspace back_and_forth
 
 
@@ -355,16 +352,19 @@ bindsym --release $mod+Print exec --no-startup-id scrot -e 'mv $f /home/chris/Pi
 
 
 # Color variables
-set $color1 #9c39a3
+set $color1 #38acd6
 set $color2 #52938e
+#set $color2 #a031a5
 set $color3 #56b7b0
 set $darklight #074860
-set $highlight #fb50fb
-set $background #0c442c
+set $highlight #3fc0ef
+set $background #203e4a
 set $background2 #5a8683
+#set $background3 #2a8691
 set $background3 #2e8889
-set $termfocused #fb50fb
-set $termunfocused #657f94
+set $termfocused #203e4a
+set $termunfocused #2c909c
+
 
 
 # Start i3bar to display a workspace bar (plus the system information i3status finds out, if available)
@@ -373,16 +373,16 @@ bar {
 
         #tray_output primary
 
-	colors {
-        	#color class           border      back.           text
-       	    focused_workspace      $color1     $background     $highlight
-        	active_workspace       #555555     #555555         #ffffff
-        	inactive_workspace     $color2     #000000         $color2
-        	urgent_workspace       $color1     $background2    $background
+    colors {
+            #color class           border      back.           text
+            focused_workspace      $color1     $background     $highlight
+            active_workspace       #555555     #555555         #ffffff
+            inactive_workspace     $color2     #000000         $color2
+            urgent_workspace       $color1     $background2    $background
 
              statusline $color2
              separator $color2
-    	}
+        }
 }
 
 
@@ -412,7 +412,7 @@ client.urgent             $termunfocused   $termunfocused  $termunfocused  $term
 
 
 # Load wallpaper
-exec_always --no-startup-id feh --bg-scale /home/chris/Pictures/Wallpapers/grurple.png
+exec_always --no-startup-id feh --bg-scale /home/chris/Pictures/Wallpapers/cools.png
 #exec --no-startup-id compton --config ~/.config/compton.conf -b
 
 
@@ -428,9 +428,9 @@ exec --no-startup-id xinput set-prop "ETPS/2 Elantech Touchpad" "libinput Accel 
 exec --no-startup-id nm-applet
 
 
-# Start  DejaDup monitor
-exec --no-startup-id /usr/lib/x86_64-linux-gnu/deja-dup/deja-dup-monitor
-
-
 # Start Dropbox
 exec --no-startup-id dropbox start
+
+
+# Start  DejaDup monitor
+exec --no-startup-id /usr/lib/x86_64-linux-gnu/deja-dup/deja-dup-monitor
